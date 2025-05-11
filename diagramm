@@ -1,0 +1,72 @@
+Требования к проекту:
+Пользователь должен иметь возможность создавать новые тренировки.
+Возможность добавления даты для каждой тренировки.
+Возможность редактирования существующих тренировок.
+Возможность удаления тренировок.
+Возможность отмечать тренировки выполненными или же не выполненными.
+Возможность посмотреть статистику тренировок т.е процент количества выполненных тренировок из общего количества.
+
+
+ ////////////////////////////use keys///////////////////////////////////////////////////
+  @startuml
+
+left to right direction
+actor Пользователь
+
+rectangle "Чек-лист тренировок" {
+    usecase "Создание новых тренировок" as UC1
+    usecase "Добавление даты тренировки" as UC2
+    usecase "Редактирование существующих тренировок" as UC3
+    usecase "Удаление тренировок" as UC4
+    usecase "Отметка тренировки как выполненной или же нет" as UC5
+    usecase "Просмотр статистики тренировок" as UC6
+
+}
+
+Пользователь --> UC1
+Пользователь --> UC2
+Пользователь --> UC3
+Пользователь --> UC4
+Пользователь --> UC5
+Пользователь --> UC6
+@enduml
+
+
+  ///////////////////////////////////////////class diagramm////////////////////////////////////////////////////
+@startuml
+
+class Workout {
+  + Name : string
+  + Date : DateTime
+  + IsCompleted : bool
+}
+
+class Form1 {
+  - workouts : List<Workout>
+  - dataGridViewWorkouts : DataGridView
+  - lblStatistics : Label
+  + Form1()
+  + SetupDataGridView()
+  + btnAdd_Click()
+  + btnEdit_Click()
+  + btnDelete_Click()
+  + RefreshData()
+  + UpdateStatistics()
+  + dataGridViewWorkouts_CellValueChanged()
+}
+
+class Form2 {
+  + WorkoutName : string
+  + WorkoutDate : DateTime
+  + IsCompleted : bool
+  + Form2()
+  + btnSave_Click()
+  + btnCancel_Click()
+  + AddEditForm_Load()
+}
+
+Form1 --> Workout : Содержит список тренировок
+Form1 --> Form2 : Открывает для добавления/редактирования
+Form2 --> Workout : Создает/изменяет
+
+@enduml
