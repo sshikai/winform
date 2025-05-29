@@ -39,7 +39,7 @@ namespace project
             DataGridViewTextBoxColumn dateCol = new DataGridViewTextBoxColumn();
             dateCol.HeaderText = "Дата";
             dateCol.Name = "Date";
-            dateCol.DefaultCellStyle.Format = "d"; // Короткий формат даты
+            dateCol.DefaultCellStyle.Format = "d"; 
             dataGridViewWorkouts.Columns.Add(dateCol);
 
            
